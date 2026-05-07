@@ -1,0 +1,546 @@
+@import "tailwindcss";
+
+/* -------------------------------------------------------------------------
+   Raha Resort theme, faithful port of the reference at
+   C:\Users\Okazaki\Desktop\Development\raha resort.
+   Goudy (local) for headings, Montserrat for body.
+   Translucent header + luxury motion layered on top.
+   ------------------------------------------------------------------------- */
+
+@theme {
+  --color-primary: #8b7355;
+  --color-primary-dark: #6b5344;
+  --color-primary-light: #a8957a;
+  --color-secondary: #1f1d1a;
+  --color-secondary-dark: #0f0e0c;
+  --color-sand: #d4c19a;
+  --color-sand-light: #e8dcc4;
+  --color-sand-dark: #b8a37a;
+  --color-charcoal: #1f1d1a;
+  --color-accent: #c9a25a;
+  --color-accent-soft: #d8b878;
+  /* Body text reads as near-black on pale backgrounds for max contrast.
+     Headings get their own deep-espresso brown via --color-heading below. */
+  --color-text: #1a1a1a;
+  --color-text-light: #4a4a4a;
+  --color-text-muted: #6e6e6e;
+  --color-heading: #3d2c1d;
+  --color-cream: #f5f1eb;
+  --color-off-white: #f8f6f3;
+  --color-ink: #1a1a1a;
+
+  --font-heading: var(--font-playfair), "Playfair Display", Georgia, serif;
+  --font-sans: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+
+  --ease-out-luxe: cubic-bezier(0.2, 0.65, 0.2, 1);
+  --ease-out-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+:root {
+  /* Per-theme nav tokens, set by ThemeWatcher via body-level classes */
+  --theme-nav-bg: rgba(26, 26, 26, 0.32);
+  --theme-nav-bg-top: rgba(26, 26, 26, 0.0);
+  --theme-nav-border: rgba(255, 255, 255, 0.08);
+  --theme-nav-fg: #ffffff;
+
+  --color-bg-soft: #f5f1eb;
+  --color-surface: #ffffff;
+}
+
+/* Dark mode (toggle-driven via DarkModeToggle, sets html[data-scheme=dark]).
+   Inverts pale surfaces and body text. Section themes (.theme-*) still take
+   precedence inside their own sections so dark photo sections stay dark. */
+html[data-scheme="dark"] {
+  --color-text: #e8e4dd;
+  --color-text-light: #b8b2a8;
+  --color-text-muted: #8a857c;
+  --color-heading: #f5f1eb;
+  --color-bg-soft: #1a1814;
+  --color-surface: #1f1d1a;
+}
+html[data-scheme="dark"] body {
+  background: #14110e;
+  color: var(--color-text);
+}
+html[data-scheme="dark"] .theme-light,
+html[data-scheme="dark"] .theme-cream {
+  --color-heading: #f5f1eb;
+  --theme-nav-fg: #f5f1eb;
+  --theme-nav-bg: rgba(26, 24, 20, 0.85);
+  --theme-nav-bg-top: rgba(26, 24, 20, 0);
+  --theme-nav-border: rgba(255, 255, 255, 0.08);
+  background: #14110e !important;
+  color: var(--color-text);
+}
+html[data-scheme="dark"] .theme-light *:where(:not(img):not(svg):not(input)),
+html[data-scheme="dark"] .theme-cream *:where(:not(img):not(svg):not(input)) {
+  --color-secondary: #f5f1eb;
+}
+
+html,
+body {
+  background: #ffffff;
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  accent-color: var(--color-primary);
+}
+
+/* Tone down browser-blue chrome on native date/select controls */
+input[type="date"],
+input[type="time"],
+select {
+  accent-color: var(--color-primary);
+  color-scheme: light;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: sepia(1) saturate(2.5) hue-rotate(350deg) brightness(0.55);
+  opacity: 0.7;
+  cursor: pointer;
+}
+input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}
+
+/* Smooth-scroll only, no snap. The previous proximity snap was pulling
+   the viewport to section starts and short-circuiting the natural read
+   of text/content flowing through each section. With smooth-scroll on
+   the document, anchor jumps still glide and the long pinned sections
+   (Rooms, Dumbbell) keep their scroll-driven choreography unobstructed. */
+html {
+  scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  overflow-x: hidden;
+}
+
+img,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+/* ----------------------------------------------------------
+   Global interactive hover animation standard.
+   Applies to every link, button, select, summary, role=button,
+   and any element marked with [data-interactive].
+   Specific components can layer extra motion on top
+   (e.g. framer-motion whileHover scale).
+   ---------------------------------------------------------- */
+a,
+button,
+select,
+summary,
+[role="button"],
+[data-interactive] {
+  transition-property: color, background-color, border-color, opacity, transform,
+    box-shadow, text-decoration-color, filter;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+a:hover {
+  opacity: 0.78;
+  transform: translateY(-1px);
+}
+a:active {
+  transform: translateY(0);
+}
+
+button:not(:disabled):hover,
+[role="button"]:not([aria-disabled="true"]):hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+}
+button:not(:disabled):active,
+[role="button"]:not([aria-disabled="true"]):active {
+  transform: translateY(0);
+  filter: brightness(1);
+}
+
+select:hover {
+  opacity: 0.85;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  a:hover,
+  button:not(:disabled):hover,
+  [role="button"]:not([aria-disabled="true"]):hover {
+    transform: none;
+    filter: none;
+  }
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: #1a1a1a;
+}
+
+/* --------------------------------------------------------------
+   Typography system, single source of truth
+   See TYPOGRAPHY.md for usage guidelines.
+
+   Scale:
+     h1 / .t-display , hero / page openers
+     h2 / .t-section , section titles ("A Haven of Tranquility")
+     h3 / .t-sub     , subsection / card group titles
+     h4 / .t-card    , card / item titles
+     .t-eyebrow      , small uppercase pre-title (alias of .section-subtitle)
+     .t-lead         , prominent intro paragraph
+     p  / .t-body    , default body copy
+     .t-body-sm      , secondary body / dense info
+     .t-caption      , micro label (uppercase, tracked)
+     .t-italic       , italic display flourish (footer headers, quotes)
+   -------------------------------------------------------------- */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  line-height: 1.15;
+  color: var(--color-heading);
+  margin: 0;
+  letter-spacing: 0.005em;
+}
+
+h1,
+.t-display {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  line-height: 1.08;
+  letter-spacing: 0.01em;
+  color: var(--color-heading);
+}
+
+h2,
+.t-section {
+  font-family: var(--font-heading);
+  font-size: clamp(1.85rem, 4vw, 2.85rem);
+  line-height: 1.15;
+  letter-spacing: 0.005em;
+  color: var(--color-heading);
+}
+
+h3,
+.t-sub {
+  font-family: var(--font-heading);
+  font-size: clamp(1.3rem, 2.4vw, 1.75rem);
+  line-height: 1.25;
+  color: var(--color-heading);
+}
+
+h4,
+.t-card {
+  font-family: var(--font-heading);
+  font-size: clamp(1.05rem, 1.5vw, 1.25rem);
+  line-height: 1.3;
+  color: var(--color-heading);
+}
+
+/* Single body voice. Every body-style class is Montserrat at 16px (1rem)
+   per the standing rule. Variants only differ in line-height / opacity. */
+p,
+.t-body {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.75;
+  color: inherit;
+}
+
+.t-lead {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.75;
+  color: inherit;
+  font-weight: 400;
+}
+
+.t-body-sm {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.65;
+  color: inherit;
+}
+
+.t-caption {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  line-height: 1.4;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--color-text-light);
+}
+
+.t-eyebrow {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  /* Standardised gold across the site. */
+  color: var(--color-accent);
+  margin-bottom: 0.85rem;
+}
+
+.t-italic {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0.005em;
+  color: inherit;
+}
+
+/* --- Section theme tokens ---
+   Dark/photo themes (dark, slate, primary) flip body + heading to white so
+   text always sits readable on top of imagery or dark fills.
+   Pale themes (cream, light) keep near-black body text and deep-espresso
+   brown headings.
+   `--theme-nav-bg` is the header's scrolled state, `--theme-nav-bg-top` is
+   the near-transparent state at the very top of the page. */
+.theme-dark {
+  --theme-nav-bg: rgba(26, 26, 26, 0.42);
+  --theme-nav-bg-top: rgba(26, 26, 26, 0);
+  --theme-nav-border: rgba(255, 255, 255, 0.1);
+  --theme-nav-fg: #ffffff;
+  --color-heading: #ffffff;
+  color: rgba(255, 255, 255, 0.94);
+}
+.theme-slate {
+  --theme-nav-bg: rgba(31, 29, 26, 0.5);
+  --theme-nav-bg-top: rgba(31, 29, 26, 0);
+  --theme-nav-border: rgba(255, 255, 255, 0.1);
+  --theme-nav-fg: #ffffff;
+  --color-heading: #ffffff;
+  color: rgba(255, 255, 255, 0.92);
+}
+.theme-primary {
+  --theme-nav-bg: rgba(139, 115, 85, 0.45);
+  --theme-nav-bg-top: rgba(139, 115, 85, 0);
+  --theme-nav-border: rgba(255, 255, 255, 0.12);
+  --theme-nav-fg: #ffffff;
+  --color-heading: #ffffff;
+  color: rgba(255, 255, 255, 0.94);
+}
+.theme-cream {
+  --theme-nav-bg: rgba(245, 241, 235, 0.85);
+  --theme-nav-bg-top: rgba(245, 241, 235, 0);
+  --theme-nav-border: rgba(26, 26, 26, 0.08);
+  /* Match the logo's natural brown so the wordmark and the leaf logo
+     read as the same colour on light sections. */
+  --theme-nav-fg: #3d2c1d;
+  --color-heading: #3d2c1d;
+  color: var(--color-text);
+}
+.theme-light {
+  --theme-nav-bg: rgba(255, 255, 255, 0.85);
+  --theme-nav-bg-top: rgba(255, 255, 255, 0);
+  --theme-nav-border: rgba(26, 26, 26, 0.08);
+  --theme-nav-fg: #3d2c1d;
+  --color-heading: #3d2c1d;
+  color: var(--color-text);
+}
+
+/* --- Utilities --- */
+.container-xl {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: clamp(20px, 10vw, 200px);
+}
+
+.section-subtitle {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  /* Standardised: every eyebrow on the site is the gold accent. */
+  color: var(--color-accent);
+  margin-bottom: 1rem;
+}
+
+.section-subtitle.on-dark {
+  color: var(--color-accent-soft);
+}
+
+/* Legal/footer links: underline on hover.
+   The global `a { text-decoration: none }` was winning over Tailwind's
+   `hover:underline` in this codebase, so set it explicitly with !important
+   on a scoped class. */
+/* Standard sizing for the brand-logo flourish that opens lead-style sections
+   (e.g. the QuickNav grid). Centralized so every section uses the same size. */
+.section-flourish-logo {
+  width: 64px;
+  height: auto;
+  opacity: 0.95;
+  display: block;
+  margin-inline: auto;
+}
+
+.legal-link {
+  text-decoration: none;
+}
+.legal-link:hover {
+  text-decoration: underline !important;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+}
+
+.title-divider {
+  width: 60px;
+  height: 2px;
+  /* Standardised gold across light and dark sections. */
+  background: var(--color-accent);
+  margin: 1.5rem 0;
+}
+.title-divider.center {
+  margin-inline: auto;
+}
+.title-divider.on-dark {
+  background: var(--color-accent);
+}
+
+.section-description {
+  max-width: 600px;
+  /* Inherit so section themes (dark vs. light) drive readable contrast. */
+  color: inherit;
+  opacity: 0.92;
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+.section-header .section-description {
+  margin-inline: auto;
+}
+
+.section-cta {
+  text-align: center;
+  margin-top: 4rem;
+}
+
+/* --- Buttons (from reference) --- */
+.btn {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease,
+    box-shadow 0.3s ease, border-color 0.3s ease;
+  text-align: center;
+}
+.btn-primary {
+  background: var(--color-primary);
+  color: #ffffff;
+}
+.btn-primary:hover {
+  background: var(--color-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(139, 115, 85, 0.3);
+}
+.btn-secondary {
+  background: transparent;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+}
+.btn-secondary:hover {
+  background: #ffffff;
+  color: var(--color-secondary);
+}
+.btn-outline {
+  background: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+}
+.btn-outline:hover {
+  background: var(--color-primary);
+  color: #ffffff;
+}
+
+/* Hover zoom on images that live inside overflow-hidden wrappers */
+.img-zoom {
+  transition: transform 0.5s ease;
+}
+.group:hover .img-zoom,
+.zoom-host:hover .img-zoom {
+  transform: scale(1.1);
+}
+
+/* Scroll indicator */
+@keyframes scrollPulse {
+  0%,
+  100% {
+    opacity: 0.7;
+    transform: scaleY(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleY(1.1);
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .img-zoom,
+  .btn {
+    transition: none !important;
+  }
+}
+
+*:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Each homepage section snaps to (at least) one screen tall and centers its
+   content vertically. `min-height` so very tall content can still overflow
+   gracefully on small viewports instead of getting clipped. svh > vh for
+   mobile so the address bar showing/hiding doesn't cause jank. */
+.section-screen {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Parallax helper, `background-attachment: fixed` thrashes the compositor
+   (especially with smooth-scroll), so we fall back to `scroll` everywhere
+   and rely on transform-based motion for parallax instead. */
+.parallax-fixed {
+  background-attachment: scroll;
+}
