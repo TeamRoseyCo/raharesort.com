@@ -22,7 +22,8 @@ const ALWAYS_OPEN = false;
    - No popup when tab is hidden (alt+tab, dev tools)
    - sessionStorage and localStorage guards so it shows AT MOST
      once per browser session and at most once every 7 days. */
-const ENABLE_DELAY_MS = 12000;
+const ENABLE_DELAY_MS = 20000;
+const MIN_SCROLL_PX = 600;
 const SESSION_KEY = "raha-exit-intent-shown";
 const PERSIST_KEY = "raha-exit-intent-shown-at";
 const COOLDOWN_MS = 7 * 24 * 60 * 60 * 1000;
@@ -40,6 +41,7 @@ export default function ExitIntentPopup() {
     if (lastShown && Date.now() - lastShown < COOLDOWN_MS) return;
 
     let armed = false;
+    let fired = false;
     const armTimer = window.setTimeout(() => {
       armed = true;
     }, ENABLE_DELAY_MS);
@@ -51,29 +53,33 @@ export default function ExitIntentPopup() {
       lastT = performance.now();
     };
 
+    const cleanup = () => {
+      window.clearTimeout(armTimer);
+      document.removeEventListener("mousemove", onMove);
+      document.removeEventListener("mouseout", onMouseOut);
+    };
+
     const onMouseOut = (e: MouseEvent) => {
+      if (fired) return;
       if (!armed) return;
       if (document.hidden) return;
       if (e.relatedTarget) return;
-      // Must exit through the TOP edge.
+      if (window.scrollY < MIN_SCROLL_PX) return;
       if (e.clientY > -2) return;
-      // Must be moving up with intent (>= 350 px/s upward).
       const dt = performance.now() - lastT;
       if (dt > 0) {
         const vy = ((e.clientY - lastY) / dt) * 1000;
         if (vy > -350) return;
       }
+      fired = true;
       sessionStorage.setItem(SESSION_KEY, "1");
       localStorage.setItem(PERSIST_KEY, String(Date.now()));
       setOpen(true);
+      cleanup();
     };
     document.addEventListener("mousemove", onMove, { passive: true });
     document.addEventListener("mouseout", onMouseOut);
-    return () => {
-      window.clearTimeout(armTimer);
-      document.removeEventListener("mousemove", onMove);
-      document.removeEventListener("mouseout", onMouseOut);
-    };
+    return cleanup;
   }, []);
 
   useEffect(() => {
