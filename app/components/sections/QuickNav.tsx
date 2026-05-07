@@ -36,8 +36,7 @@ export default function QuickNav() {
   return (
     <section
       data-theme="light"
-      className="theme-light relative bg-white"
-      style={{ padding: "5rem 0 3rem" }}
+      className="theme-light relative bg-white pt-28 pb-12 sm:pt-20"
     >
       <div className="container-xl">
         <motion.div

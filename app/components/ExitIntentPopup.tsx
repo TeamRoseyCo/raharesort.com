@@ -15,10 +15,17 @@ import { PHOTO_LIB } from "@/app/lib/photos";
  * sessionStorage guard).
  */
 const ALWAYS_OPEN = false;
-/* Once enabled (ALWAYS_OPEN=false) the popup fires once per browser session
-   when the cursor leaves through the top edge of the viewport. Tweak below. */
-const ENABLE_DELAY_MS = 4000; // grace window after page load before listening
+/* Behavior tuning so the popup isn't jealous:
+   - 12s grace window before listening (visitor has to be engaged first)
+   - Cursor must exit through the very top of the viewport (clientY <= -2)
+   - Cursor must be moving UP fast (vy < -350 px/s)
+   - No popup when tab is hidden (alt+tab, dev tools)
+   - sessionStorage and localStorage guards so it shows AT MOST
+     once per browser session and at most once every 7 days. */
+const ENABLE_DELAY_MS = 12000;
 const SESSION_KEY = "raha-exit-intent-shown";
+const PERSIST_KEY = "raha-exit-intent-shown-at";
+const COOLDOWN_MS = 7 * 24 * 60 * 60 * 1000;
 
 export default function ExitIntentPopup() {
   const [open, setOpen] = useState(ALWAYS_OPEN);
@@ -29,23 +36,42 @@ export default function ExitIntentPopup() {
     if (ALWAYS_OPEN) return;
     if (typeof window === "undefined") return;
     if (sessionStorage.getItem(SESSION_KEY)) return;
+    const lastShown = Number(localStorage.getItem(PERSIST_KEY) || "0");
+    if (lastShown && Date.now() - lastShown < COOLDOWN_MS) return;
 
     let armed = false;
     const armTimer = window.setTimeout(() => {
       armed = true;
     }, ENABLE_DELAY_MS);
 
+    let lastY = 0;
+    let lastT = 0;
+    const onMove = (e: MouseEvent) => {
+      lastY = e.clientY;
+      lastT = performance.now();
+    };
+
     const onMouseOut = (e: MouseEvent) => {
       if (!armed) return;
-      // Fire only when the cursor exits through the TOP of the viewport.
+      if (document.hidden) return;
       if (e.relatedTarget) return;
-      if (e.clientY > 0) return;
+      // Must exit through the TOP edge.
+      if (e.clientY > -2) return;
+      // Must be moving up with intent (>= 350 px/s upward).
+      const dt = performance.now() - lastT;
+      if (dt > 0) {
+        const vy = ((e.clientY - lastY) / dt) * 1000;
+        if (vy > -350) return;
+      }
       sessionStorage.setItem(SESSION_KEY, "1");
+      localStorage.setItem(PERSIST_KEY, String(Date.now()));
       setOpen(true);
     };
+    document.addEventListener("mousemove", onMove, { passive: true });
     document.addEventListener("mouseout", onMouseOut);
     return () => {
       window.clearTimeout(armTimer);
+      document.removeEventListener("mousemove", onMove);
       document.removeEventListener("mouseout", onMouseOut);
     };
   }, []);
@@ -116,6 +142,7 @@ export default function ExitIntentPopup() {
                   src={PHOTO_LIB.exteriorPoolside}
                   alt=""
                   fill
+                  unoptimized
                   sizes="(max-width: 768px) 0px, 280px"
                   className="object-cover"
                 />
