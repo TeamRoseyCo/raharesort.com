@@ -4,25 +4,30 @@ import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
 /**
- * Forces an INSTANT scroll-to-top on every route change, bypassing the
- * page-wide `html { scroll-behavior: smooth }` rule. Without this, navigating
- * between pages animates a long upward scroll, which fires every in-view
- * animation as the viewport passes through them.
+ * Forces an instant scroll-to-top on every route change, refresh, and
+ * back/forward (bfcache) restore. Without this, the browser would land
+ * on the previous scroll position or hash and fire every in-view
+ * animation while scrolling up.
  */
 export default function RouteScrollReset() {
   const pathname = usePathname();
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    const html = document.documentElement;
-    const prev = html.style.scrollBehavior;
-    html.style.scrollBehavior = "auto";
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
     window.scrollTo(0, 0);
-    // restore on next frame so subsequent in-page anchor jumps stay smooth
-    requestAnimationFrame(() => {
-      html.style.scrollBehavior = prev;
-    });
   }, [pathname]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const onPageShow = (e: PageTransitionEvent) => {
+      if (e.persisted) window.scrollTo(0, 0);
+    };
+    window.addEventListener("pageshow", onPageShow);
+    return () => window.removeEventListener("pageshow", onPageShow);
+  }, []);
 
   return null;
 }

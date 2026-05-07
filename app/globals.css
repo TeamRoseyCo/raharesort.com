@@ -105,18 +105,11 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
   opacity: 1;
 }
 
-/* Smooth-scroll only, no snap. The previous proximity snap was pulling
-   the viewport to section starts and short-circuiting the natural read
-   of text/content flowing through each section. With smooth-scroll on
-   the document, anchor jumps still glide and the long pinned sections
-   (Rooms, Dumbbell) keep their scroll-driven choreography unobstructed. */
+/* Instant scroll. Smooth-scroll on the document made route changes
+   animate a long upward scroll, which fired every in-view animation as
+   the viewport passed through them. Anchor jumps now resolve instantly. */
 html {
-  scroll-behavior: smooth;
-}
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
+  scroll-behavior: auto;
 }
 
 body {
