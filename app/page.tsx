@@ -4,6 +4,7 @@ import Welcome from "./components/sections/Welcome";
 import Rooms from "./components/sections/Rooms";
 import Amenities from "./components/sections/Amenities";
 import Gallery from "./components/sections/Gallery";
+import EventsTeaser from "./components/sections/EventsTeaser";
 import Cta from "./components/sections/Cta";
 import Newsletter from "./components/sections/Newsletter";
 import Footer from "./components/sections/Footer";
@@ -18,6 +19,7 @@ export default function Home() {
       <Rooms />
       <Amenities />
       <Gallery />
+      <EventsTeaser />
       <Cta />
       <Newsletter />
       <Footer />
