@@ -306,7 +306,7 @@ export default function Footer() {
                 <a
                   href="https://roseyco.com"
                   target="_blank"
-                  rel="noopener"
+                  rel="noopener nofollow"
                   className="text-white/40 transition-colors hover:text-white/70"
                   style={{
                     textDecoration: "underline",

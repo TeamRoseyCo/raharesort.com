@@ -181,6 +181,28 @@ export default function AboutPage() {
                   morning. That's the part we won't outgrow.
                 </p>
               </Reveal>
+              <Reveal delay={0.42}>
+                <p
+                  className="mt-5 t-body"
+                  style={{ color: "var(--color-secondary)" }}
+                >
+                  Our brand identity and this website were developed in
+                  partnership with{" "}
+                  <a
+                    href="https://roseyco.com"
+                    target="_blank"
+                    rel="noopener"
+                    style={{
+                      color: "var(--color-secondary)",
+                      borderBottom: "1px solid var(--color-accent)",
+                      paddingBottom: 1,
+                    }}
+                  >
+                    RoseyCo
+                  </a>
+                  , a creative studio with a focus on hospitality.
+                </p>
+              </Reveal>
             </div>
           </div>
         </div>

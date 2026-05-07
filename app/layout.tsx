@@ -57,6 +57,29 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${goudy.variable} ${montserrat.variable} ${inter.variable} ${playfair.variable} antialiased`}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Hotel",
+              name: "Raha Resort",
+              url: "https://raharesort.com",
+              description:
+                "An oasis in Jericho, the place where you feel premium in.",
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Jericho",
+                addressCountry: "PS",
+              },
+              creator: {
+                "@type": "Organization",
+                name: "RoseyCo",
+                url: "https://roseyco.com",
+              },
+            }),
+          }}
+        />
         <SmoothScroll>
           <ThemeWatcher>
             <RouteScrollReset />
