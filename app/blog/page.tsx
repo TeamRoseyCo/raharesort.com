@@ -228,9 +228,10 @@ export default function BlogPage() {
             <Reveal delay={0.26}>
               <Link
                 href="/#newsletter"
-                className="mt-8 inline-flex items-center px-9 py-4 text-[0.85rem] font-medium uppercase tracking-[3px] text-white hover:-translate-y-0.5"
+                className="mt-8 inline-flex items-center px-9 py-4 text-[0.85rem] font-medium uppercase tracking-[3px] hover:-translate-y-0.5"
                 style={{
                   background: "var(--color-primary)",
+                  color: "#ffffff",
                   boxShadow: "0 6px 20px rgba(139,115,85,0.25)",
                 }}
               >

@@ -38,6 +38,60 @@ export default function LocationPage() {
         />
       </Section>
 
+      <section
+        data-theme="light"
+        className="theme-light bg-white"
+        style={{ paddingBottom: "5rem" }}
+      >
+        <div className="container-xl">
+          <Reveal y={36}>
+            <div
+              className="relative w-full overflow-hidden"
+              style={{
+                aspectRatio: "16 / 9",
+                boxShadow: "0 24px 50px -22px rgba(20,14,8,0.35)",
+                border: "1px solid rgba(0,0,0,0.08)",
+              }}
+            >
+              <iframe
+                title="Raha Resort on the map"
+                src="https://maps.google.com/maps?q=31.823722,35.45275&t=&z=15&ie=UTF8&iwloc=B&output=embed"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  width: "100%",
+                  height: "100%",
+                  border: 0,
+                }}
+                allowFullScreen
+              />
+            </div>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <div className="mt-5 flex flex-wrap items-center justify-between gap-4 text-[0.85rem]">
+              <span style={{ color: "var(--color-text-light)" }}>
+                Coordinates · 31.823722, 35.45275
+              </span>
+              <a
+                href="https://www.google.com/maps?ll=31.823722,35.45275&z=15"
+                target="_blank"
+                rel="noopener"
+                className="font-medium uppercase tracking-[2px]"
+                style={{
+                  color: "var(--color-primary)",
+                  borderBottom: "1px solid var(--color-accent)",
+                  paddingBottom: 2,
+                }}
+              >
+                Open in Google Maps →
+              </a>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       <Section theme="cream">
         <TwoCol
           eyebrow="Welcome"

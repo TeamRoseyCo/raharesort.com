@@ -36,39 +36,47 @@ export default function PageHeader({
             "linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.55) 100%)",
         }}
       />
-      <div className="container-xl relative z-10">
-        <motion.h1
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-          className="mx-auto mb-4 max-w-[1100px] font-[family-name:var(--font-heading)] text-white"
-          style={{ fontSize: "clamp(2.25rem, 5vw, 4.25rem)", letterSpacing: "0.04em", lineHeight: 1.1 }}
-        >
-          {title}
-        </motion.h1>
-        <motion.nav
-          aria-label="Breadcrumb"
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.8 }}
-          className="text-[0.875rem] uppercase tracking-[2px]"
-        >
-          {crumbs.map((c, i) => (
-            <span key={i}>
-              {i > 0 && <span className="mx-2 text-white/70">/</span>}
-              {c.href ? (
-                <Link
-                  href={c.href}
-                  className="text-white/90 transition-colors hover:text-[var(--color-accent-soft)]"
-                >
-                  {c.label}
-                </Link>
-              ) : (
-                <span className="font-semibold text-white">{c.label}</span>
-              )}
-            </span>
-          ))}
-        </motion.nav>
+      <div className="container-xl relative z-10 flex w-full justify-center">
+        <div className="flex max-w-[1100px] flex-col items-center text-center">
+          <motion.h1
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+            className="mb-4 font-[family-name:var(--font-heading)] text-white"
+            style={{
+              fontSize: "clamp(2.25rem, 5vw, 4.25rem)",
+              letterSpacing: "0.04em",
+              lineHeight: 1.1,
+              textAlign: "center",
+            }}
+          >
+            {title}
+          </motion.h1>
+          <motion.nav
+            aria-label="Breadcrumb"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
+            className="text-[0.875rem] uppercase tracking-[2px]"
+            style={{ textAlign: "center" }}
+          >
+            {crumbs.map((c, i) => (
+              <span key={i}>
+                {i > 0 && <span className="mx-2 text-white/70">/</span>}
+                {c.href ? (
+                  <Link
+                    href={c.href}
+                    className="text-white/90 transition-colors hover:text-[var(--color-accent-soft)]"
+                  >
+                    {c.label}
+                  </Link>
+                ) : (
+                  <span className="font-semibold text-white">{c.label}</span>
+                )}
+              </span>
+            ))}
+          </motion.nav>
+        </div>
       </div>
     </section>
   );

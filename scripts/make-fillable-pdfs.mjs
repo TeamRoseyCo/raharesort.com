@@ -337,16 +337,6 @@ await makeDoc({
           helper: "How long Palestinian regulations require keeping booking records.",
           height: 36,
         },
-        {
-          label: "International transfer mechanism for any data crossing borders",
-          helper: "Provider Standard Contractual Clauses, adequacy reliance, or similar.",
-          height: 36,
-        },
-        {
-          label: "Confirmed analytics tool",
-          helper: "Will the live site use Vercel Analytics, Plausible, Fathom, Google Analytics, or none?",
-          height: 28,
-        },
       ],
     },
     {
@@ -418,52 +408,6 @@ await makeDoc({
       ],
     },
     {
-      title: "Social media URLs",
-      questions: [
-        { label: "Facebook URL", height: 22 },
-        { label: "Instagram URL", height: 22 },
-        { label: "X (Twitter) URL", height: 22 },
-        { label: "LinkedIn URL", height: 22 },
-        { label: "TikTok URL", height: 22 },
-        { label: "YouTube URL (optional)", height: 22 },
-      ],
-    },
-    {
-      title: "Newsletter / forms",
-      questions: [
-        {
-          label: "Email service provider for newsletter",
-          helper: "Mailchimp, Brevo, Klaviyo, Beehiiv, Resend, etc. With a list ID if we have one.",
-          height: 36,
-        },
-        {
-          label: "Contact form destination",
-          helper: "Where do contact form submissions go (email, CRM)? Provide endpoint or address.",
-          height: 30,
-        },
-      ],
-    },
-    {
-      title: "Brand assets",
-      questions: [
-        {
-          label: "Canonical logo file to use across the site",
-          helper: "We have raha-logo.png and Raha Resort Logo.png in /public. Pick one.",
-          height: 28,
-        },
-      ],
-    },
-    {
-      title: "Imagery",
-      questions: [
-        {
-          label: "Replacement photography (gym, tours)",
-          helper: "Old r29-r36 placeholders still used for gym and tours. Production photography to replace?",
-          height: 50,
-        },
-      ],
-    },
-    {
       title: "Copy",
       questions: [
         {
@@ -475,25 +419,6 @@ await makeDoc({
           label: "Things to specifically NOT say in copy",
           helper: "We already avoid em dashes, \"unmatched\", \"timeless hospitality\", \"warm hospitality\".",
           height: 36,
-        },
-      ],
-    },
-    {
-      title: "Misc",
-      questions: [
-        {
-          label: "Pricing / room rate display preferences",
-          helper: "Show rates publicly? Currency? \"From X per night\" format?",
-          height: 40,
-        },
-        {
-          label: "Cookie consent banner provider",
-          helper: "Cookiebot, Termly, Iubenda, custom, none?",
-          height: 28,
-        },
-        {
-          label: "Anything we forgot",
-          height: 80,
         },
       ],
     },
