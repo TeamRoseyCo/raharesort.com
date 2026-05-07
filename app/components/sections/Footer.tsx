@@ -260,6 +260,9 @@ export default function Footer() {
               <option value="ru" style={{ color: "#1f1d1a" }}>
                 Русский
               </option>
+              <option value="de" style={{ color: "#1f1d1a" }}>
+                Deutsch
+              </option>
             </select>
           </div>
         </div>
