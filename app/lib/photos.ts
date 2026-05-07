@@ -1,6 +1,6 @@
 export const photo = (n: number) => `/resort/r${n}.webp`;
 
-const lib = (name: string) => `/resort/library/${encodeURIComponent(name)}.jpeg`;
+const lib = (name: string) => `/resort/library/${encodeURIComponent(name)}.webp`;
 
 export const PHOTO_LIB = {
   poolFacadeBackdrop: lib("Pool With Hotel Facade Backdrop"),

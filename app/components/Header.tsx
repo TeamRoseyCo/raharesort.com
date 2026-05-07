@@ -364,37 +364,117 @@ export default function Header() {
 
       {/* Mobile overlay */}
       <div
-        className={`lg:hidden fixed inset-0 top-full mt-0 transition-all duration-500 ${
+        className={`lg:hidden fixed inset-0 transition-all duration-500 ${
           open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
         style={{
-          background: "rgba(26,26,26,0.97)",
+          background: "rgba(20,16,12,0.98)",
           color: "#f5f1eb",
-          height: "100vh",
+          height: "100dvh",
           top: 0,
-          paddingTop: 92,
+          zIndex: 60,
+          overflowY: "auto",
         }}
       >
-        <nav aria-label="Mobile" className="flex flex-col gap-2 px-8 pb-8">
+        {/* Close button — pinned top-right of the overlay so it's always
+            findable, regardless of header z-index. */}
+        <button
+          type="button"
+          onClick={() => setOpen(false)}
+          aria-label="Close menu"
+          className="absolute right-5 top-5 inline-flex h-11 w-11 items-center justify-center"
+          style={{ color: "#f5f1eb" }}
+        >
+          <svg
+            viewBox="0 0 24 24"
+            width="22"
+            height="22"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.6"
+            strokeLinecap="round"
+          >
+            <line x1="6" y1="6" x2="18" y2="18" />
+            <line x1="18" y1="6" x2="6" y2="18" />
+          </svg>
+        </button>
+
+        <nav
+          aria-label="Mobile"
+          className="flex flex-col gap-2 px-8 pb-12 pt-24"
+        >
           {NAV.map((l, i) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              onClick={() => setOpen(false)}
-              className="border-b border-white/10 py-5 font-[family-name:var(--font-heading)] text-[clamp(26px,6vw,38px)] transition-all duration-500"
+            <div
+              key={l.href + l.label}
               style={{
                 transform: open ? "translateX(0)" : "translateX(-20px)",
                 opacity: open ? 1 : 0,
-                transitionDelay: open ? `${120 + i * 60}ms` : "0ms",
+                transition: "transform 500ms ease, opacity 500ms ease",
+                transitionDelay: open ? `${120 + i * 50}ms` : "0ms",
+                borderBottom: "1px solid rgba(255,255,255,0.1)",
               }}
             >
-              {l.label}
-            </Link>
+              {l.disabled ? (
+                <span
+                  className="block py-4 font-[family-name:var(--font-heading)]"
+                  style={{
+                    fontSize: "clamp(22px, 5vw, 30px)",
+                    color: "rgba(245,241,235,0.8)",
+                  }}
+                >
+                  {l.label}
+                </span>
+              ) : (
+                <Link
+                  href={l.href}
+                  onClick={() => setOpen(false)}
+                  className="block py-4 font-[family-name:var(--font-heading)]"
+                  style={{
+                    fontSize: "clamp(22px, 5vw, 30px)",
+                    color: "#f5f1eb",
+                  }}
+                >
+                  {l.label}
+                </Link>
+              )}
+
+              {l.sub && l.sub.length ? (
+                <ul className="flex flex-col gap-1 pb-4 pl-1">
+                  {l.sub.map((s) => (
+                    <li key={s.href + s.label}>
+                      <Link
+                        href={s.href}
+                        onClick={() => setOpen(false)}
+                        className="inline-flex items-center gap-3 py-2 text-[0.95rem]"
+                        style={{
+                          color: "rgba(245,241,235,0.7)",
+                          fontFamily: "var(--font-sans)",
+                        }}
+                      >
+                        <span
+                          aria-hidden
+                          style={{
+                            width: 16,
+                            height: 1,
+                            background: "var(--color-accent)",
+                          }}
+                        />
+                        {s.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
+            </div>
           ))}
           <Link
             href="/contact"
             onClick={() => setOpen(false)}
-            className="mt-8 btn btn-primary text-center"
+            className="mt-8 inline-flex items-center justify-center px-9 py-4 text-[0.85rem] font-medium uppercase tracking-[2.5px] text-white"
+            style={{
+              background: "var(--color-primary)",
+              boxShadow: "0 6px 20px rgba(139,115,85,0.25)",
+            }}
           >
             Book Now
           </Link>

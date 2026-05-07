@@ -47,7 +47,7 @@ export default function BookingStrip() {
             min={today}
             value={checkIn}
             onChange={(e) => setCheckIn(e.target.value)}
-            className="w-full bg-transparent text-[1.05rem] text-[var(--color-text)] outline-none"
+            className="w-full bg-transparent text-[0.95rem] text-[var(--color-text)] outline-none sm:text-[1.05rem]"
           />
         </Field>
 
@@ -59,7 +59,7 @@ export default function BookingStrip() {
             type="date"
             name="checkOut"
             min={checkIn || today}
-            className="w-full bg-transparent text-[1.05rem] text-[var(--color-text)] outline-none"
+            className="w-full bg-transparent text-[0.95rem] text-[var(--color-text)] outline-none sm:text-[1.05rem]"
           />
         </Field>
 
@@ -70,7 +70,7 @@ export default function BookingStrip() {
           <select
             name="guests"
             defaultValue="2"
-            className="w-full appearance-none bg-transparent text-[1.05rem] text-[var(--color-text)] outline-none"
+            className="w-full appearance-none bg-transparent text-[0.95rem] text-[var(--color-text)] outline-none sm:text-[1.05rem]"
           >
             <option value="1">1 Guest</option>
             <option value="2">2 Guests</option>
@@ -87,7 +87,7 @@ export default function BookingStrip() {
           <select
             name="roomType"
             defaultValue=""
-            className="w-full appearance-none bg-transparent text-[1.05rem] text-[var(--color-text)] outline-none"
+            className="w-full appearance-none bg-transparent text-[0.95rem] text-[var(--color-text)] outline-none sm:text-[1.05rem]"
           >
             <option value="">Any room</option>
             <option value="mountain">Mountain View Room</option>
@@ -126,8 +126,8 @@ function Field({
   children: React.ReactNode;
 }) {
   return (
-    <label className="flex flex-col gap-1.5 bg-white/95 px-6 py-4 transition-colors duration-300 hover:bg-white">
-      <span className="flex items-center gap-2 text-[0.65rem] font-semibold uppercase tracking-[1.8px] text-[var(--color-primary)]">
+    <label className="flex flex-col gap-1 bg-white/95 px-4 py-3 transition-colors duration-300 hover:bg-white sm:gap-1.5 sm:px-6 sm:py-4">
+      <span className="flex items-center gap-2 text-[0.62rem] font-semibold uppercase tracking-[1.6px] text-[var(--color-primary)] sm:text-[0.65rem] sm:tracking-[1.8px]">
         <span aria-hidden>{icon}</span>
         {label}
       </span>
