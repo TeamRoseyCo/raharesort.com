@@ -26,6 +26,19 @@ const STEPS = [
   { n: "04", title: "Enjoy the Ride", copy: "Your driver will meet you at the designated time and location." },
 ];
 
+export const metadata = {
+  title: "Airport Transfers & Transport",
+  description:
+    "Private transfers from Amman, Tel Aviv, and Jerusalem to Raha Resort in Jericho. Cars and drivers booked through the front desk.",
+  alternates: { canonical: "/transport" },
+  openGraph: {
+    title: "Airport Transfers & Transport | Raha Resort",
+    description:
+      "Private transfers from Amman, Tel Aviv, and Jerusalem to Raha Resort in Jericho.",
+    url: "/transport",
+  },
+};
+
 export default function TransportPage() {
   return (
     <main>

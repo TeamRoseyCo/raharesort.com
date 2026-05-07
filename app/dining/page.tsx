@@ -14,9 +14,22 @@ const HOURS = [
 const DIET = [
   { title: "Vegetarian & Vegan", copy: "Extensive plant-based options available at every meal." },
   { title: "Gluten-Free", copy: "Dedicated gluten-free options clearly marked on menus." },
-  { title: "Halal Options", copy: "Halal meat options available upon request." },
+  { title: "Fully Halal", copy: "All meat served at Raha Resort is halal. No special request needed." },
   { title: "Allergy Aware", copy: "Our chefs can adapt dishes for common food allergies." },
 ];
+
+export const metadata = {
+  title: "Dining",
+  description:
+    "Local Palestinian cooking and resort dining at Raha Resort, Jericho. Breakfast, lunch, and dinner in a calm, family-run setting.",
+  alternates: { canonical: "/dining" },
+  openGraph: {
+    title: "Dining | Raha Resort",
+    description:
+      "Local Palestinian cooking and resort dining at Raha Resort, Jericho.",
+    url: "/dining",
+  },
+};
 
 export default function DiningPage() {
   return (
@@ -29,9 +42,9 @@ export default function DiningPage() {
 
       <Section theme="light">
         <SectionHead
-          eyebrow="Culinary"
-          title="A Feast for the Senses"
-          description="At Raha Resort, dining is more than a meal. It is an experience. Our culinary team crafts exceptional dishes using fresh, locally-sourced ingredients, served in stunning settings that complement the natural beauty surrounding us."
+          eyebrow="The Kitchen"
+          title="Three meals a day, made here."
+          description="The bread comes out of our oven. The meat is halal. Most of what's on the plate started its day on a farm within an hour of Jericho. No tasting menus, no theatre, no over-explained dishes. Just food that tastes like the place you're in."
         />
       </Section>
 

@@ -26,9 +26,55 @@ const FAQ = [
   { q: "Is there an entrance fee to the Dead Sea?", a: "It depends on the beach. Some public beaches are free, while private beaches and resort areas charge entrance fees that typically include facilities like showers, changing rooms, and loungers." },
 ];
 
+export const metadata = {
+  title: "A Visitor's Guide to the Dead Sea from Jericho",
+  description:
+    "Everything to know before visiting the Dead Sea from Jericho. Best time to go, what to bring, and how to plan a quiet day.",
+  alternates: { canonical: "/blog/dead-sea-guide" },
+  openGraph: {
+    title: "A Visitor's Guide to the Dead Sea from Jericho",
+    description:
+      "Best time to go, what to bring, and how to plan a quiet day at the Dead Sea from Jericho.",
+    url: "/blog/dead-sea-guide",
+    type: "article",
+  },
+};
+
+const ARTICLE_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline:
+    "The Ultimate Guide to Visiting the Dead Sea: Everything You Need to Know",
+  description:
+    "Everything to know before visiting the Dead Sea from Jericho. Best time to go, what to bring, and how to plan a quiet day.",
+  author: {
+    "@type": "Organization",
+    name: "Raha Resort",
+    url: "https://raharesort.com",
+  },
+  publisher: {
+    "@type": "Organization",
+    name: "Raha Resort",
+    logo: {
+      "@type": "ImageObject",
+      url: "https://raharesort.com/icon.png",
+    },
+  },
+  datePublished: "2026-01-10",
+  dateModified: "2026-01-10",
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": "https://raharesort.com/blog/dead-sea-guide",
+  },
+};
+
 export default function DeadSeaGuide() {
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(ARTICLE_SCHEMA) }}
+      />
       <PageHeader
         title="The Ultimate Guide to Visiting the Dead Sea: Everything You Need to Know"
         bg={photo(34)}

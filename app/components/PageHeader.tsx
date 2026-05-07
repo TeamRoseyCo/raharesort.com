@@ -13,12 +13,27 @@ export default function PageHeader({
   bg: string;
   crumbs: { href?: string; label: string }[];
 }) {
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: crumbs.map((c, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: c.label,
+      ...(c.href ? { item: `https://raharesort.com${c.href}` } : {}),
+    })),
+  };
+
   return (
     <section
       data-theme="dark"
       className="theme-dark relative flex items-center justify-center overflow-hidden text-center text-white"
       style={{ height: "50vh", minHeight: 400 }}
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <Image
         aria-hidden
         src={bg}

@@ -38,14 +38,60 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Raha Resort | A Premium Oasis in Jericho",
+  metadataBase: new URL("https://raharesort.com"),
+  title: {
+    default: "Raha Resort | A Premium Oasis in Jericho",
+    template: "%s | Raha Resort",
+  },
   description:
-    "An oasis in Jericho, the place where you feel premium in.",
+    "All-inclusive luxury resort in Jericho. Refined amenities, breathtaking views, and a warm Raha welcome.",
+  applicationName: "Raha Resort",
+  authors: [{ name: "Raha Resort" }],
+  keywords: [
+    "Raha Resort",
+    "Jericho hotel",
+    "luxury resort Jericho",
+    "Dead Sea hotel",
+    "Palestine resort",
+    "Jericho spa",
+  ],
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "Raha Resort | A Premium Oasis in Jericho",
     description:
-      "An oasis in Jericho, the place where you feel premium in.",
+      "All-inclusive luxury resort in Jericho. Refined amenities, breathtaking views, and a warm Raha welcome.",
+    url: "https://raharesort.com",
+    siteName: "Raha Resort",
     type: "website",
+    locale: "en_US",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Raha Resort, Jericho",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Raha Resort | A Premium Oasis in Jericho",
+    description:
+      "All-inclusive luxury resort in Jericho. Refined amenities, breathtaking views, and a warm Raha welcome.",
+    images: ["/og-image.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   },
 };
 
@@ -62,16 +108,34 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "Hotel",
+              "@type": "Resort",
               name: "Raha Resort",
               url: "https://raharesort.com",
               description:
-                "An oasis in Jericho, the place where you feel premium in.",
+                "All-inclusive luxury resort in Jericho. Refined amenities, breathtaking views, and a warm Raha welcome.",
+              image: "https://raharesort.com/og-image.jpg",
+              logo: "https://raharesort.com/icon.png",
               address: {
                 "@type": "PostalAddress",
                 addressLocality: "Jericho",
+                addressRegion: "West Bank",
                 addressCountry: "PS",
               },
+              geo: {
+                "@type": "GeoCoordinates",
+                latitude: 31.857,
+                longitude: 35.460,
+              },
+              priceRange: "$$$",
+              amenityFeature: [
+                { "@type": "LocationFeatureSpecification", name: "Heated outdoor pool", value: true },
+                { "@type": "LocationFeatureSpecification", name: "Spa", value: true },
+                { "@type": "LocationFeatureSpecification", name: "Fitness centre", value: true },
+                { "@type": "LocationFeatureSpecification", name: "Restaurant", value: true },
+                { "@type": "LocationFeatureSpecification", name: "Free Wi-Fi", value: true },
+                { "@type": "LocationFeatureSpecification", name: "Airport transfer", value: true },
+                { "@type": "LocationFeatureSpecification", name: "24/7 reception", value: true },
+              ],
               creator: {
                 "@type": "Organization",
                 name: "RoseyCo",

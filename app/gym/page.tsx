@@ -75,6 +75,19 @@ const GUIDELINES = [
   "Breaking the guidelines results in termination / ban.",
 ];
 
+export const metadata = {
+  title: "Fitness Centre",
+  description:
+    "Air-conditioned gym at Raha Resort, Jericho. Cardio and resistance equipment, open daily for guests.",
+  alternates: { canonical: "/gym" },
+  openGraph: {
+    title: "Fitness Centre | Raha Resort",
+    description:
+      "Air-conditioned gym at Raha Resort, Jericho. Open daily for guests.",
+    url: "/gym",
+  },
+};
+
 export default function GymPage() {
   return (
     <main>

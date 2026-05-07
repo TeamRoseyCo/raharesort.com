@@ -128,6 +128,19 @@ const POLICIES = [
   },
 ];
 
+export const metadata = {
+  title: "Rooms & Suites",
+  description:
+    "Quiet, climate-controlled rooms in Jericho with mountain, pool, and resort views. Book direct for the best rate at Raha Resort.",
+  alternates: { canonical: "/rooms" },
+  openGraph: {
+    title: "Rooms & Suites | Raha Resort",
+    description:
+      "Quiet, climate-controlled rooms in Jericho with mountain, pool, and resort views.",
+    url: "/rooms",
+  },
+};
+
 export default function RoomsPage() {
   return (
     <main>

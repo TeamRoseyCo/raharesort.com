@@ -21,6 +21,19 @@ const NEARBY = [
   { title: "Bethlehem", distance: "1 hr", copy: "Visit the Church of the Nativity and explore the vibrant markets and Palestinian culture." },
 ];
 
+export const metadata = {
+  title: "Location & Directions",
+  description:
+    "How to find Raha Resort in Jericho. Driving directions from Amman, Jerusalem, Tel Aviv, and the Allenby Bridge.",
+  alternates: { canonical: "/location" },
+  openGraph: {
+    title: "Location & Directions | Raha Resort",
+    description:
+      "How to find Raha Resort in Jericho, with directions from Amman, Jerusalem, and Tel Aviv.",
+    url: "/location",
+  },
+};
+
 export default function LocationPage() {
   return (
     <main>

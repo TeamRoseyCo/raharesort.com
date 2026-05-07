@@ -111,6 +111,19 @@ const SERVICES = [
   },
 ];
 
+export const metadata = {
+  title: "Events & Weddings",
+  description:
+    "Weddings, private dinners, and corporate retreats at Raha Resort, Jericho. Quiet venue, full-service hosting.",
+  alternates: { canonical: "/events" },
+  openGraph: {
+    title: "Events & Weddings | Raha Resort",
+    description:
+      "Weddings, private dinners, and corporate retreats at Raha Resort, Jericho.",
+    url: "/events",
+  },
+};
+
 export default function EventsPage() {
   return (
     <main>

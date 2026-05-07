@@ -78,6 +78,19 @@ const EVENT_INCLUSIONS = [
   "Rooms held at preferred rates for your guests",
 ];
 
+export const metadata = {
+  title: "The Pool",
+  description:
+    "Twenty-five metre heated pool, palm-shaded cabanas, and poolside service at Raha Resort, Jericho. Open year-round.",
+  alternates: { canonical: "/pool" },
+  openGraph: {
+    title: "The Pool | Raha Resort",
+    description:
+      "Twenty-five metre heated pool and poolside service at Raha Resort, Jericho.",
+    url: "/pool",
+  },
+};
+
 export default function PoolPage() {
   return (
     <main>

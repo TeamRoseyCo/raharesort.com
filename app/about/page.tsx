@@ -50,6 +50,19 @@ const VALUES = [
   },
 ];
 
+export const metadata = {
+  title: "About",
+  description:
+    "Family run, Palestinian owned. The story behind Raha Resort, a small luxury hotel in Jericho built around the idea of exhale.",
+  alternates: { canonical: "/about" },
+  openGraph: {
+    title: "About | Raha Resort",
+    description:
+      "Family run, Palestinian owned. The story behind Raha Resort, a small luxury hotel in Jericho.",
+    url: "/about",
+  },
+};
+
 export default function AboutPage() {
   return (
     <main>

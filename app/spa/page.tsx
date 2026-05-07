@@ -73,6 +73,19 @@ const TREATMENTS = [
   },
 ];
 
+export const metadata = {
+  title: "Spa & Wellness",
+  description:
+    "Resort spa in Jericho, fifteen minutes from the Dead Sea. Massage, facials, and wellness rituals at Raha Resort.",
+  alternates: { canonical: "/spa" },
+  openGraph: {
+    title: "Spa & Wellness | Raha Resort",
+    description:
+      "Resort spa in Jericho, fifteen minutes from the Dead Sea.",
+    url: "/spa",
+  },
+};
+
 export default function SpaPage() {
   return (
     <main>

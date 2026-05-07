@@ -20,6 +20,19 @@ const INFO = [
   { title: "Transportation", copy: "All tours include complimentary pick-up and drop-off at Raha Resort. Be ready at the lobby at the scheduled time." },
 ];
 
+export const metadata = {
+  title: "Tours & Day Trips",
+  description:
+    "Dead Sea visits, Mount of Temptation, ancient Jericho, and private driver service from Raha Resort.",
+  alternates: { canonical: "/tours" },
+  openGraph: {
+    title: "Tours & Day Trips | Raha Resort",
+    description:
+      "Dead Sea visits, Mount of Temptation, ancient Jericho, and private driver service.",
+    url: "/tours",
+  },
+};
+
 export default function ToursPage() {
   return (
     <main>

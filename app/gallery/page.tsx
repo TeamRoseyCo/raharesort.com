@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import PageHeader from "../components/PageHeader";
@@ -163,71 +163,50 @@ export default function GalleryPage() {
             })}
           </div>
 
-          {/* Animated grid (LayoutId for smooth re-flow on filter change). */}
-          <motion.div
-            layout
+          {/* Grid. Filter swaps the list; we keep a stable key so React reuses
+              DOM nodes and the browser keeps already-decoded images. */}
+          <div
             className="grid gap-4"
             style={{
               gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
+              contain: "layout paint",
             }}
           >
-            <AnimatePresence>
-              {filtered.map((t, i) => (
-                <motion.figure
-                  key={t.src}
-                  layout
-                  initial={{ opacity: 0, y: 18 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 12 }}
-                  transition={{
-                    duration: 0.55,
-                    delay: (i % 8) * 0.04,
-                    ease: [0.16, 1, 0.3, 1],
-                  }}
-                  onClick={() => setActive(i)}
-                  className="group relative cursor-pointer overflow-hidden"
+            {filtered.map((t, i) => (
+              <figure
+                key={t.src}
+                onClick={() => setActive(i)}
+                className="group relative cursor-pointer overflow-hidden"
+                style={{
+                  height: i % 7 === 0 ? 460 : 300,
+                  boxShadow: "0 12px 28px -16px rgba(20,14,8,0.25)",
+                  contain: "layout paint",
+                  willChange: "transform",
+                }}
+              >
+                <Image
+                  src={t.src}
+                  alt={t.alt}
+                  fill
+                  sizes="(max-width: 768px) 50vw, (max-width: 1280px) 33vw, 25vw"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                  loading={i < 6 ? "eager" : "lazy"}
+                  priority={i < 4}
+                />
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
                   style={{
-                    height: i % 7 === 0 ? 460 : 300,
-                    boxShadow: "0 12px 28px -16px rgba(20,14,8,0.25)",
+                    background:
+                      "linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.55) 100%)",
                   }}
-                >
-                  <Image
-                    src={t.src}
-                    alt={t.alt}
-                    fill
-                    sizes="(max-width: 768px) 50vw, (max-width: 1280px) 33vw, 25vw"
-                    className="object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.06]"
-                    loading="lazy"
-                    unoptimized
-                  />
-                  <div
-                    aria-hidden
-                    className="absolute inset-0 transition-opacity duration-500"
-                    style={{
-                      background:
-                        "linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.55) 100%)",
-                    }}
-                  />
-                  <span
-                    className="absolute left-4 bottom-4 text-[0.7rem] font-medium uppercase tracking-[2px] text-white opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-                  >
-                    {t.category}
-                  </span>
-                  {/* Gold corner edges, animate in on hover */}
-                  <span
-                    aria-hidden
-                    className="absolute left-0 top-0 h-px w-0 transition-all duration-700 group-hover:w-full"
-                    style={{ background: "var(--color-accent)" }}
-                  />
-                  <span
-                    aria-hidden
-                    className="absolute left-0 top-0 h-0 w-px transition-all duration-700 group-hover:h-full"
-                    style={{ background: "var(--color-accent)" }}
-                  />
-                </motion.figure>
-              ))}
-            </AnimatePresence>
-          </motion.div>
+                />
+                <span className="pointer-events-none absolute left-4 bottom-4 text-[0.7rem] font-medium uppercase tracking-[2px] text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                  {t.category}
+                </span>
+              </figure>
+            ))}
+          </div>
 
           {filtered.length === 0 ? (
             <p
@@ -302,7 +281,6 @@ export default function GalleryPage() {
               width={1600}
               height={1067}
               sizes="90vw"
-              unoptimized
               className="mx-auto block max-h-[85vh] w-auto max-w-full object-contain"
             />
             <div className="mt-3 text-center text-[0.78rem] uppercase tracking-[0.28em] text-white/85">

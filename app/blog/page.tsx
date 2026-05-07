@@ -30,6 +30,20 @@ const FEATURED: Post = {
    Dead Sea guide above is the only live article. */
 const POSTS: Post[] = [];
 
+export const metadata = {
+  title: "Journal",
+  description:
+    "Stories, guides, and slow notes from Raha Resort and the city of Jericho.",
+  alternates: { canonical: "/blog" },
+  openGraph: {
+    title: "Journal | Raha Resort",
+    description:
+      "Stories, guides, and slow notes from Raha Resort and the city of Jericho.",
+    url: "/blog",
+    type: "website",
+  },
+};
+
 export default function BlogPage() {
   return (
     <main>

@@ -93,6 +93,19 @@ const GUEST_SERVICES = [
   },
 ];
 
+export const metadata = {
+  title: "Experiences & Amenities",
+  description:
+    "Concierge, transfers, tours, and resort amenities at Raha Resort in Jericho. Whatever you need, we'll sort it.",
+  alternates: { canonical: "/services" },
+  openGraph: {
+    title: "Experiences & Amenities | Raha Resort",
+    description:
+      "Concierge, transfers, tours, and resort amenities at Raha Resort in Jericho.",
+    url: "/services",
+  },
+};
+
 export default function ServicesPage() {
   return (
     <main>
