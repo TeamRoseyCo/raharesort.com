@@ -1,20 +1,96 @@
-import Image from "next/image";
 import PageHeader from "../components/PageHeader";
 import Footer from "../components/sections/Footer";
 import Cta from "../components/sections/Cta";
 import { Section, SectionHead } from "../components/ContentSection";
 import Reveal from "../components/Reveal";
 import { photo } from "../lib/photos";
+import TourCards, { type Tour } from "./TourCards";
 
 // Placeholder images from Unsplash. Swap with branded photography before launch.
 const UNSPLASH = (id: string) =>
   `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=1400&q=80`;
 
-const TOURS = [
-  { title: "Dead Sea Swim & Desert Hike", duration: "Full Day", copy: "Immerse yourself in the legendary Dead Sea, the lowest point on Earth, and continue with an exhilarating desert hike through stunning Judean Desert landscapes.", img: UNSPLASH("1469474968028-56623f02e42e") },
-  { title: "Jerusalem Old City Experience", duration: "Full Day", copy: "Walk through 3,000 years of history. Visit the Western Wall, Church of the Holy Sepulchre, Dome of the Rock, and wander the vibrant markets.", img: UNSPLASH("1544979590-37e9b47eb705") },
-  { title: "Tour Around Jericho", duration: "Full Day", copy: "Discover the world's oldest continuously inhabited city. Explore ancient ruins, take the cable car to the Mount of Temptation, and experience the vibrant culture.", img: UNSPLASH("1519681393784-d120267933ba") },
-  { title: "Half Day Desert Experience", duration: "Half Day", copy: "Perfect for limited time. Experience dramatic canyons, ancient monasteries, and breathtaking viewpoints in the Judean Desert.", img: UNSPLASH("1473580044384-7ba9967e16a0") },
+const TOURS: Tour[] = [
+  {
+    title: "Dead Sea Swim & Desert Hike",
+    duration: "Full Day",
+    copy: "Immerse yourself in the legendary Dead Sea, the lowest point on Earth, and continue with an exhilarating desert hike through stunning Judean Desert landscapes.",
+    img: UNSPLASH("1469474968028-56623f02e42e"),
+    departure: "08:30",
+    groupSize: "Up to 8 guests",
+    highlights: [
+      "Float in mineral-rich Dead Sea waters",
+      "Mud wrap on the lowest beach on Earth",
+      "Guided hike into a Judean Desert canyon",
+      "Sunset viewpoint over the salt plains",
+    ],
+    includes: [
+      "Air-conditioned transport from the resort",
+      "Local English-speaking guide",
+      "Bottled water and fruit",
+      "Towels and beach access",
+    ],
+  },
+  {
+    title: "Jerusalem Old City Experience",
+    duration: "Full Day",
+    copy: "Walk through 3,000 years of history. Visit the Western Wall, Church of the Holy Sepulchre, Dome of the Rock, and wander the vibrant markets.",
+    img: UNSPLASH("1544979590-37e9b47eb705"),
+    departure: "08:00",
+    groupSize: "Up to 8 guests",
+    highlights: [
+      "Western Wall and the Jewish Quarter",
+      "Church of the Holy Sepulchre",
+      "Dome of the Rock viewpoint",
+      "Spice and textile markets in the Old City",
+    ],
+    includes: [
+      "Resort pickup and return",
+      "Licensed local guide",
+      "All site entry fees",
+      "Lunch at a family-run restaurant",
+    ],
+  },
+  {
+    title: "Tour Around Jericho",
+    duration: "Full Day",
+    copy: "Discover the world's oldest continuously inhabited city. Explore ancient ruins, take the cable car to the Mount of Temptation, and experience the vibrant culture.",
+    img: UNSPLASH("1519681393784-d120267933ba"),
+    departure: "09:00",
+    groupSize: "Up to 10 guests",
+    highlights: [
+      "Tell es-Sultan, the oldest known city walls",
+      "Cable car up the Mount of Temptation",
+      "Hisham's Palace mosaic floor",
+      "Date plantation and local market visit",
+    ],
+    includes: [
+      "Resort pickup and return",
+      "Cable car ticket",
+      "Ruins entry fees",
+      "Bottled water and snacks",
+    ],
+  },
+  {
+    title: "Half Day Desert Experience",
+    duration: "Half Day",
+    copy: "Perfect for limited time. Experience dramatic canyons, ancient monasteries, and breathtaking viewpoints in the Judean Desert.",
+    img: UNSPLASH("1473580044384-7ba9967e16a0"),
+    departure: "14:00",
+    groupSize: "Up to 6 guests",
+    highlights: [
+      "Wadi Qelt canyon overlook",
+      "St. George's Monastery viewpoint",
+      "Bedouin tea stop in the desert",
+      "Golden-hour photo break",
+    ],
+    includes: [
+      "Resort pickup and return",
+      "Local guide",
+      "Bottled water",
+      "Light refreshment",
+    ],
+  },
 ];
 
 const INFO = [
@@ -52,35 +128,7 @@ export default function ToursPage() {
           title="Explore the Region"
           description="Let us take you on unforgettable journeys through the most breathtaking destinations in the region. From the healing waters of the Dead Sea to the ancient streets of Jerusalem."
         />
-        <div className="grid gap-8 md:grid-cols-2">
-          {TOURS.map((t, i) => (
-            <Reveal key={t.title} delay={i * 0.08}>
-              <article className="group overflow-hidden bg-white" style={{ boxShadow: "0 4px 12px rgba(0,0,0,0.08)" }}>
-                <div className="zoom-host relative h-[260px] overflow-hidden">
-                  <Image src={t.img} alt={t.title} fill sizes="(max-width: 768px) 100vw, 50vw" className="img-zoom object-cover" />
-                  <span className="absolute left-6 top-6 bg-[var(--color-accent)] px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-[1px] text-[#1a1a1a]">
-                    {t.duration}
-                  </span>
-                  <span
-                    className="absolute right-6 top-6 inline-flex items-center text-[0.62rem] font-medium uppercase tracking-[1.8px] text-white"
-                    style={{
-                      background: "rgba(20,14,8,0.55)",
-                      backdropFilter: "blur(4px)",
-                      padding: "5px 9px",
-                      borderRadius: 4,
-                    }}
-                  >
-                    Placeholder
-                  </span>
-                </div>
-                <div className="p-8">
-                  <h3 className="mb-3 text-[1.5rem] text-[var(--color-secondary)]">{t.title}</h3>
-                  <p className="text-[0.95rem] leading-[1.7] text-[var(--color-text-light)]">{t.copy}</p>
-                </div>
-              </article>
-            </Reveal>
-          ))}
-        </div>
+        <TourCards tours={TOURS} />
       </Section>
 
       <Section theme="cream">
