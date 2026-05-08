@@ -84,20 +84,35 @@ export default function TransportPage() {
       </Section>
 
       <Section theme="cream">
-        <SectionHead
-          eyebrow="Fleet"
-          title="Our Vehicles"
-          description="Our fleet features well-maintained, comfortable vehicles to suit every need."
-        />
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {VEHICLES.map((v, i) => (
-            <Reveal key={v.title} delay={i * 0.05}>
-              <div className="bg-white p-6 text-center" style={{ boxShadow: "0 2px 6px rgba(0,0,0,0.04)" }}>
-                <h3 className="mb-2 text-[1.15rem] text-[var(--color-secondary)]">{v.title}</h3>
-                <p className="text-[0.9rem] leading-[1.7] text-[var(--color-text-light)]">{v.copy}</p>
-              </div>
-            </Reveal>
-          ))}
+        {/* Decorative Mercedes silhouette watermark, sits behind the fleet cards. */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 bottom-0 flex justify-center overflow-hidden"
+          style={{ color: "var(--color-secondary)" }}
+        >
+          <img
+            src="/mercedes-silhouette.svg"
+            alt=""
+            className="h-auto w-[min(900px,90vw)] opacity-[0.07]"
+            style={{ transform: "translateY(18%)" }}
+          />
+        </div>
+        <div className="relative">
+          <SectionHead
+            eyebrow="Fleet"
+            title="Our Vehicles"
+            description="Our fleet features well-maintained, comfortable vehicles to suit every need."
+          />
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {VEHICLES.map((v, i) => (
+              <Reveal key={v.title} delay={i * 0.05}>
+                <div className="bg-white p-6 text-center" style={{ boxShadow: "0 2px 6px rgba(0,0,0,0.04)" }}>
+                  <h3 className="mb-2 text-[1.15rem] text-[var(--color-secondary)]">{v.title}</h3>
+                  <p className="text-[0.9rem] leading-[1.7] text-[var(--color-text-light)]">{v.copy}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </Section>
 
