@@ -61,17 +61,6 @@ export default function TourCards({ tours }: { tours: Tour[] }) {
                 <span className="absolute left-6 top-6 bg-[var(--color-accent)] px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-[1px] text-[#1a1a1a]">
                   {t.duration}
                 </span>
-                <span
-                  className="absolute right-6 top-6 inline-flex items-center text-[0.62rem] font-medium uppercase tracking-[1.8px] text-white"
-                  style={{
-                    background: "rgba(20,14,8,0.55)",
-                    backdropFilter: "blur(4px)",
-                    padding: "5px 9px",
-                    borderRadius: 4,
-                  }}
-                >
-                  Placeholder
-                </span>
               </div>
               <div className="p-8">
                 <h3 className="mb-3 text-[1.5rem] text-[var(--color-secondary)]">
@@ -136,17 +125,6 @@ export default function TourCards({ tours }: { tours: Tour[] }) {
                 sizes="(max-width: 860px) 100vw, 860px"
                 className="object-cover"
               />
-              <span
-                className="absolute left-5 top-5 inline-flex items-center text-[0.62rem] font-medium uppercase tracking-[1.8px] text-white"
-                style={{
-                  background: "rgba(20,14,8,0.55)",
-                  backdropFilter: "blur(4px)",
-                  padding: "5px 9px",
-                  borderRadius: 4,
-                }}
-              >
-                Placeholder
-              </span>
             </div>
 
             <div className="p-7 sm:p-10">

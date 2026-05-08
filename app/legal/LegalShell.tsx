@@ -57,13 +57,13 @@ export default function LegalShell({
           {children}
         </article>
 
+        {/* Placeholder copy until real legal text is in place — stamp kept short on the front end. */}
         <Reveal delay={0.1}>
           <p
             className="t-caption mt-16 text-[var(--color-text-muted)]"
             style={{ letterSpacing: "0.18em" }}
           >
-            Last updated · {lastUpdated} · Placeholder copy. Replace before
-            launch.
+            Last updated · {lastUpdated}
           </p>
         </Reveal>
       </section>

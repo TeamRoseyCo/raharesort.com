@@ -30,7 +30,7 @@ const MASSAGES: Massage[] = [
     title: "Aromatherapy Massage",
     duration: "60 / 90 min",
     body: "Choose your scent at the door, lavender to soften, lemongrass to lift. Oils warm in the palm before they touch you. The room holds the smell long after you leave.",
-    image: UNSPLASH("1571019613454-1cb2f99b2d8b"),
+    image: PHOTO_LIB.bathroomVanity, // resort photography
     outcomes: ["Calmed nervous system", "Mood reset", "Skin left soft"],
   },
   {
@@ -262,17 +262,6 @@ export default function SpaPage() {
                       sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       className="object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.07]"
                     />
-                    <span
-                      className="absolute left-3 top-3 inline-flex items-center text-[0.62rem] font-medium uppercase tracking-[1.8px] text-white"
-                      style={{
-                        background: "rgba(20,14,8,0.55)",
-                        backdropFilter: "blur(4px)",
-                        padding: "5px 9px",
-                        borderRadius: 4,
-                      }}
-                    >
-                      Placeholder
-                    </span>
                   </div>
                   <div className="flex flex-1 flex-col p-7">
                     <span
@@ -463,17 +452,6 @@ export default function SpaPage() {
                       sizes="(max-width: 1024px) 100vw, 33vw"
                       className="object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.07]"
                     />
-                    <span
-                      className="absolute left-3 top-3 inline-flex items-center text-[0.62rem] font-medium uppercase tracking-[1.8px] text-white"
-                      style={{
-                        background: "rgba(20,14,8,0.55)",
-                        backdropFilter: "blur(4px)",
-                        padding: "5px 9px",
-                        borderRadius: 4,
-                      }}
-                    >
-                      Placeholder
-                    </span>
                   </div>
                   <div className="flex flex-1 flex-col p-7">
                     <h3
