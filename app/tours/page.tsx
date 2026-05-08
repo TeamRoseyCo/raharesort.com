@@ -6,11 +6,15 @@ import { Section, SectionHead } from "../components/ContentSection";
 import Reveal from "../components/Reveal";
 import { photo } from "../lib/photos";
 
+// Placeholder images from Unsplash. Swap with branded photography before launch.
+const UNSPLASH = (id: string) =>
+  `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=1400&q=80`;
+
 const TOURS = [
-  { title: "Dead Sea Swim & Desert Hike", duration: "Full Day", copy: "Immerse yourself in the legendary Dead Sea, the lowest point on Earth, and continue with an exhilarating desert hike through stunning Judean Desert landscapes.", img: photo(34) },
-  { title: "Jerusalem Old City Experience", duration: "Full Day", copy: "Walk through 3,000 years of history. Visit the Western Wall, Church of the Holy Sepulchre, Dome of the Rock, and wander the vibrant markets.", img: photo(35) },
-  { title: "Tour Around Jericho", duration: "Full Day", copy: "Discover the world's oldest continuously inhabited city. Explore ancient ruins, take the cable car to the Mount of Temptation, and experience the vibrant culture.", img: photo(36) },
-  { title: "Half Day Desert Experience", duration: "Half Day", copy: "Perfect for limited time. Experience dramatic canyons, ancient monasteries, and breathtaking viewpoints in the Judean Desert.", img: photo(2) },
+  { title: "Dead Sea Swim & Desert Hike", duration: "Full Day", copy: "Immerse yourself in the legendary Dead Sea, the lowest point on Earth, and continue with an exhilarating desert hike through stunning Judean Desert landscapes.", img: UNSPLASH("1469474968028-56623f02e42e") },
+  { title: "Jerusalem Old City Experience", duration: "Full Day", copy: "Walk through 3,000 years of history. Visit the Western Wall, Church of the Holy Sepulchre, Dome of the Rock, and wander the vibrant markets.", img: UNSPLASH("1544979590-37e9b47eb705") },
+  { title: "Tour Around Jericho", duration: "Full Day", copy: "Discover the world's oldest continuously inhabited city. Explore ancient ruins, take the cable car to the Mount of Temptation, and experience the vibrant culture.", img: UNSPLASH("1519681393784-d120267933ba") },
+  { title: "Half Day Desert Experience", duration: "Half Day", copy: "Perfect for limited time. Experience dramatic canyons, ancient monasteries, and breathtaking viewpoints in the Judean Desert.", img: UNSPLASH("1473580044384-7ba9967e16a0") },
 ];
 
 const INFO = [
@@ -56,6 +60,17 @@ export default function ToursPage() {
                   <Image src={t.img} alt={t.title} fill sizes="(max-width: 768px) 100vw, 50vw" className="img-zoom object-cover" />
                   <span className="absolute left-6 top-6 bg-[var(--color-accent)] px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-[1px] text-[#1a1a1a]">
                     {t.duration}
+                  </span>
+                  <span
+                    className="absolute right-6 top-6 inline-flex items-center text-[0.62rem] font-medium uppercase tracking-[1.8px] text-white"
+                    style={{
+                      background: "rgba(20,14,8,0.55)",
+                      backdropFilter: "blur(4px)",
+                      padding: "5px 9px",
+                      borderRadius: 4,
+                    }}
+                  >
+                    Placeholder
                   </span>
                 </div>
                 <div className="p-8">
