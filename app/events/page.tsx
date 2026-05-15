@@ -638,7 +638,7 @@ export default function EventsPage() {
                   <span>Get In Touch</span>
                 </a>
                 <a
-                  href="tel:+97000000000"
+                  href="tel:0222313333"
                   className="inline-flex items-center text-[0.85rem] uppercase tracking-[2.5px]"
                   style={{
                     color: "var(--color-secondary)",

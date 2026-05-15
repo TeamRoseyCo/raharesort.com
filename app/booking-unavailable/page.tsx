@@ -7,8 +7,8 @@ export const metadata = {
   description: "Please call our reservations team to book your stay.",
 };
 
-const RESERVATION_PHONE_DISPLAY = "+970 0 000 0000";
-const RESERVATION_PHONE_TEL = "+97000000000";
+const RESERVATION_PHONE_DISPLAY = "02-2313333";
+const RESERVATION_PHONE_TEL = "0222313333";
 
 const ROOM_LABEL: Record<string, string> = {
   mountain: "Mountain View Room",

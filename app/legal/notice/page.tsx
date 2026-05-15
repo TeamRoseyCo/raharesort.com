@@ -31,7 +31,7 @@ export default function LegalNoticePage() {
         </p>
         <ul>
           <li>Email: [reservations@raharesort.com]</li>
-          <li>Phone: [+970 …]</li>
+          <li>Phone: 02-2313333</li>
           <li>Postal address: [Raha Resort, …, Jericho, Palestine]</li>
         </ul>
       </Section>

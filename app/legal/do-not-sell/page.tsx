@@ -53,7 +53,7 @@ export default function DoNotSellPage() {
         </p>
         <ul>
           <li>Email: [reservations@raharesort.com] with the subject &quot;Do Not Sell or Share&quot;.</li>
-          <li>Phone: [+970 …].</li>
+          <li>Phone: 02-2313333.</li>
           <li>Post: [Raha Resort, …, Jericho, Palestine].</li>
         </ul>
         <p>

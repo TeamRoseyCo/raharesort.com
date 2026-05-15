@@ -20,7 +20,7 @@ const INFO: { icon: typeof MapPin; title: string; lines: InfoLine[] }[] = [
   {
     icon: Phone,
     title: "Phone",
-    lines: [{ label: "+970 0 000 0000", href: "tel:+97000000000" }],
+    lines: [{ label: "02-2313333", href: "tel:0222313333" }],
   },
   {
     icon: Mail,

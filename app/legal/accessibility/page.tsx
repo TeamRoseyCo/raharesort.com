@@ -102,7 +102,7 @@ export default function AccessibilityPage() {
           book and contact us directly:
         </p>
         <ul>
-          <li>Phone: [+970 …]</li>
+          <li>Phone: 02-2313333</li>
           <li>Email: [reservations@raharesort.com]</li>
           <li>In person at the front desk during your stay.</li>
         </ul>
@@ -111,7 +111,7 @@ export default function AccessibilityPage() {
       <Section title="Reporting an Accessibility Issue">
         <p>
           If you encounter a barrier on this website or at the resort, please
-          contact us at [reservations@raharesort.com] or [+970 …] with a
+          contact us at [reservations@raharesort.com] or 02-2313333 with a
           short description of the problem and, where helpful, the page URL
           or area of the property. We aim to respond within a reasonable
           time and to fix issues as quickly as we can.

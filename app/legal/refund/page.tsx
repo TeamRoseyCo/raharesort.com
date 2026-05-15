@@ -94,7 +94,7 @@ export default function RefundPage() {
           team:
         </p>
         <ul>
-          <li>Phone: [+970 …]</li>
+          <li>Phone: 02-2313333</li>
           <li>Email: [reservations@raharesort.com]</li>
         </ul>
         <p>

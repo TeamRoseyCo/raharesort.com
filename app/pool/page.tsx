@@ -547,7 +547,7 @@ export default function PoolPage() {
                     Plan Your Event
                   </a>
                   <a
-                    href="tel:+97000000000"
+                    href="tel:0222313333"
                     className="inline-flex items-center text-[0.85rem] uppercase tracking-[2.5px] text-white/85"
                     style={{
                       borderBottom: "1px solid var(--color-accent)",
